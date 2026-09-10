@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div id="mydiv" styles="(styles)" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
+        <div id="welcome" styles="(styles)" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
+            <p style="cursor: pointer" id="welcomeclose">Close</p>
+        
             <p>
-                <p style= color:black;> DiparguOS</p>
+                <p style="color:black;"> DiparguOS</p>
             </p>
             
             <p style="color:black;" id="timeElement"></p>
@@ -17,6 +19,7 @@
     
         <div style="border: solid;width: 300px;border-radius: 10px;padding: 10px;justify-content: space-between">
             <h1>Welcome to My OS</h1>
+                <p id="welcomeopen" style="cursor: pointer;">DiparguOS</p>
             <h2>Introduction</h2>
             <p>Hello World!</p>
             <img style="width: 172px; height: 256px;" src="imgi_1_spoiler-media-youre-.jpeg" />
@@ -37,6 +40,8 @@
                 <li>Gym</li>
                 <li>Programming</li>
             </ul>
+        </div>
+
         <script src="script.js"></script>
     </body>
 
