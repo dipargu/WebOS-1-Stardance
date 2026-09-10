@@ -29,6 +29,16 @@
                 <img src="https://img.icons8.com/color/96/tv-show.png" style="width: 48px; height: 48px; border-radius: 8px;" />
                 <p style="margin: 0px; color: black; font-size: 12px;">Fav Animes</p>
             </div>
+
+            <div id="calcIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+                <img src="https://img.icons8.com/color/96/calculator.png" style="width: 48px; height: 48px; border-radius: 8px;" />
+                <p style="margin: 0px; color: black; font-size: 12px;">Calculadora</p>
+            </div>
+
+            <div id="cronoIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+                <img src="https://img.icons8.com/color/96/stopwatch.png" style="width: 48px; height: 48px; border-radius: 8px;" />
+                <p style="margin: 0px; color: black; font-size: 12px;">Cronómetro</p>
+            </div>
         </div>
 
         <div style="border: solid;width: 300px;border-radius: 10px;padding: 10px;justify-content: space-between">
@@ -80,6 +90,56 @@
             </div>
         </div>
 
+        <div class="window" id="calcWindow" style="position: absolute; top: 140px; left: 140px; display: none; background-color: rgba(20, 20, 30, 0.95); border: 1px solid #444; border-radius: 8px; width: 260px; color: #fff;">
+            <div class="windowheader" id="calcWindowheader" style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.1); cursor: grab; box-sizing: border-box;">
+                <span class="headertext" style="margin: 0; color: #fff;">Calculadora</span>
+                <span id="calcClose" style="cursor: pointer; color: #ff5f56; margin: 0; font-weight: bold;">X</span>
+            </div>
+            <div style="padding: 12px;">
+                <input type="text" id="calcScreen" readonly style="width: 100%; height: 40px; background: #111; color: #0ff; font-size: 20px; text-align: right; padding: 5px; box-sizing: border-box; border: 1px solid #444; border-radius: 4px; margin-bottom: 10px;" />
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                    <button onclick="calcAppend('7')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">7</button>
+                    <button onclick="calcAppend('8')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">8</button>
+                    <button onclick="calcAppend('9')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">9</button>
+                    <button onclick="calcAppend('/')" style="padding: 12px; background: #ff79c6; color: #fff; border: none; border-radius: 4px; cursor: pointer;">/</button>
+                    
+                    <button onclick="calcAppend('4')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">4</button>
+                    <button onclick="calcAppend('5')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">5</button>
+                    <button onclick="calcAppend('6')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">6</button>
+                    <button onclick="calcAppend('*')" style="padding: 12px; background: #ff79c6; color: #fff; border: none; border-radius: 4px; cursor: pointer;">*</button>
+                    
+                    <button onclick="calcAppend('1')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">1</button>
+                    <button onclick="calcAppend('2')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">2</button>
+                    <button onclick="calcAppend('3')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">3</button>
+                    <button onclick="calcAppend('-')" style="padding: 12px; background: #ff79c6; color: #fff; border: none; border-radius: 4px; cursor: pointer;">-</button>
+                    
+                    <button onclick="calcAppend('0')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">0</button>
+                    <button onclick="calcAppend('.')" style="padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">.</button>
+                    <button onclick="calcClear()" style="padding: 12px; background: #ff5555; color: #fff; border: none; border-radius: 4px; cursor: pointer;">C</button>
+                    <button onclick="calcAppend('+')" style="padding: 12px; background: #ff79c6; color: #fff; border: none; border-radius: 4px; cursor: pointer;">+</button>
+                    
+                    <button onclick="calcCalculate()" style="grid-column: span 4; padding: 12px; background: #50fa7b; color: #000; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">=</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="window" id="cronoWindow" style="position: absolute; top: 160px; left: 160px; display: none; background-color: rgba(20, 20, 30, 0.95); border: 1px solid #444; border-radius: 8px; width: 260px; color: #fff;">
+            <div class="windowheader" id="cronoWindowheader" style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.1); cursor: grab; box-sizing: border-box;">
+                <span class="headertext" style="margin: 0; color: #fff;">Cronómetro</span>
+                <span id="cronoClose" style="cursor: pointer; color: #ff5f56; margin: 0; font-weight: bold;">X</span>
+            </div>
+            <div style="padding: 12px; text-align: center;">
+                <input type="text" id="cronoScreen" readonly value="00:00:00" style="width: 100%; height: 50px; background: #111; color: #50fa7b; font-size: 26px; text-align: center; padding: 5px; box-sizing: border-box; border: 1px solid #444; border-radius: 4px; margin-bottom: 12px;" />
+                <div style="display: flex; gap: 6px; justify-content: center;">
+                    <button onclick="startCrono()" style="flex: 1; padding: 10px; background: #50fa7b; color: #000; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">Iniciar</button>
+                    <button onclick="stopCrono()" style="flex: 1; padding: 10px; background: #ff5555; color: #fff; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">Parar</button>
+                    <button onclick="resetCrono()" style="flex: 1; padding: 10px; background: #8be9fd; color: #000; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
         <script src="script.js"></script>
+        <script src="calculadora.js"></script>
+        <script src="crono.js"></script>
     </body>
 </html>
