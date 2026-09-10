@@ -82,3 +82,6 @@ WebOS-1-Stardance/
 <hr>
 
 <h2>Version 1.0</h2>
+## Project files
+
+[Open index.html](https://raw.githubusercontent.com/dipargu/diparguOS/main/index.html)
