@@ -18,9 +18,19 @@ function handleIconTap(element) {
     deselectIcon(element);
     
     if (element.id === "myAppIcon") {
-      openWindow(document.querySelector("#notes"));
+      var notesWin = document.querySelector("#notes");
+      if (notesWin.style.display === "flex") {
+        closeWindow(notesWin);
+      } else {
+        openWindow(notesWin);
+      }
     } else if (element.id === "animeIcon") {
-      openWindow(document.querySelector("#animeWindow"));
+      var animeWin = document.querySelector("#animeWindow");
+      if (animeWin.style.display === "flex") {
+        closeWindow(animeWin);
+      } else {
+        openWindow(animeWin);
+      }
     }
   } else {
     if (selectedIcon) deselectIcon(selectedIcon);
@@ -144,8 +154,8 @@ var animeData = [
     name: "Re:Zero Starting Life in Another World",
     tag: "Top 1",
     gifs: [
-      "Emilia foto perfil.gif",
-      "rem MAL.gif"
+      "Imagenes/Emilia%20foto%20perfil.gif",
+      "Imagenes/rem%20MAL.gif"
     ]
   },
   {
