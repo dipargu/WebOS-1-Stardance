@@ -19,10 +19,15 @@
                 </script>
         </div>
 
-        <div id="desktopApps" style="padding-top: 20px; padding-left: 16px;">
+        <div id="desktopApps" style="padding-top: 20px; padding-left: 16px; display: flex; gap: 10px;">
             <div id="myAppIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
                 <img src="imgi_11_images.jpg" style="width: 48px; height: 48px; border-radius: 8px;" />
                 <p style="margin: 0px; color: black; font-size: 12px;">Mis Notas</p>
+            </div>
+
+            <div id="animeIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+                <img src="https://img.icons8.com/color/96/tv-show.png" style="width: 48px; height: 48px; border-radius: 8px;" />
+                <p style="margin: 0px; color: black; font-size: 12px;">Fav Animes</p>
             </div>
         </div>
 
@@ -60,6 +65,18 @@
             <div style="background-color: #fff; color: #000; padding: 10px; display: flex;">
                 <div id="sidebar" style="width: 80px; border-right: 1px solid #ccc; margin-right: 10px;"></div>
                 <div id="noteContent"></div>
+            </div>
+        </div>
+
+        <div class="window" id="animeWindow" style="position: absolute; top: 120px; left: 120px; display: none; background-color: rgba(20, 20, 30, 0.95); border: 1px solid #444; border-radius: 8px; width: 420px; color: #fff;">
+            <div class="windowheader" id="animeWindowheader" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.1); cursor: grab;">
+                <p id="animeClose" style="cursor: pointer; color: #ff5f56; margin: 0; font-weight: bold;">X</p>
+                <p class="headertext" style="margin: 0; color: #fff;">Favorite Anime List</p>
+                <div></div>
+            </div>
+            <div style="padding: 12px;">
+                <div id="animeContainer" style="display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto;">
+                </div>
             </div>
         </div>
 
