@@ -86,3 +86,17 @@ if (welcomeScreenOpen) {
     openWindow(document.querySelector("#welcome"));
   });
 }
+function toggleMainHeader() {
+  var header = document.querySelector("#welcome");
+  var textLabel = document.querySelector("#toggleHeaderText");
+  
+  if (header && textLabel) {
+    if (header.style.display === "none") {
+      header.style.display = "flex";
+      textLabel.textContent = "Close";
+    } else {
+      header.style.display = "none";
+      textLabel.textContent = "Open";
+    }
+  }
+}

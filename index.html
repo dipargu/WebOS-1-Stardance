@@ -41,12 +41,10 @@
             });
         </script>
 
-        <div id="welcome" class="window" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
-            <p style="cursor: pointer" id="welcomeclose" class="closebutton">Close</p>
+        <div id="welcome" class="window" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between; align-items: center; padding: 0 10px; box-sizing: border-box;">
+            <div></div>
         
-            <p>
-                <p style="color:black;" class="headertext"> DiparguOS</p>
-            </p>
+            <p style="color:black;" class="headertext">DiparguOS</p>
             
             <p style="color:black;" id="timeElement" class="headertext"></p>
                 <script>
@@ -56,31 +54,36 @@
                 </script>
         </div>
 
-        <div id="desktopApps" style="padding-top: 20px; padding-left: 16px; display: flex; gap: 10px;">
-            <div id="myAppIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+        <div id="desktopApps">
+            <div id="myAppIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
                 <img src="Imagenes/imgi_11_images.jpg" style="width: 48px; height: 48px; border-radius: 8px;" />
-                <p style="margin: 0px; color: black; font-size: 12px;">Mis Notas</p>
+                <p style="margin: 4px 0 0 0; color: black; font-size: 11px; font-weight: bold;">Mis Notas</p>
             </div>
 
-            <div id="animeIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+            <div id="animeIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
                 <img src="https://img.icons8.com/color/96/tv-show.png" style="width: 48px; height: 48px; border-radius: 8px;" />
-                <p style="margin: 0px; color: black; font-size: 12px;">Fav Animes</p>
+                <p style="margin: 4px 0 0 0; color: black; font-size: 11px; font-weight: bold;">Fav Animes</p>
             </div>
 
-            <div id="calcIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+            <div id="calcIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
                 <img src="https://img.icons8.com/color/96/calculator.png" style="width: 48px; height: 48px; border-radius: 8px;" />
-                <p style="margin: 0px; color: black; font-size: 12px;">Calculadora</p>
+                <p style="margin: 4px 0 0 0; color: black; font-size: 11px; font-weight: bold;">Calculadora</p>
             </div>
 
-            <div id="cronoIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+            <div id="cronoIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
                 <img src="https://img.icons8.com/color/96/stopwatch.png" style="width: 48px; height: 48px; border-radius: 8px;" />
-                <p style="margin: 0px; color: black; font-size: 12px;">Cronómetro</p>
+                <p style="margin: 4px 0 0 0; color: black; font-size: 11px; font-weight: bold;">Cronómetro</p>
+            </div>
+
+            <div id="toggleHeaderIcon" onclick="toggleMainHeader()" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
+                <img src="https://img.icons8.com/color/96/settings.png" style="width: 48px; height: 48px; border-radius: 8px;" />
+                <p id="toggleHeaderText" style="margin: 4px 0 0 0; color: black; font-size: 11px; font-weight: bold;">Close</p>
             </div>
         </div>
 
         <div style="border: solid;width: 300px;border-radius: 10px;padding: 10px;justify-content: space-between">
             <h1>Welcome to My OS</h1>
-                <p id="welcomeopen" style="cursor: pointer;">DiparguOS</p>
+                <p>DiparguOS</p>
             <h2>Introduction</h2>
             <p>Hello World!</p>
             <img style="width: 172px; height: 256px;" src="Imagenes/imgi_1_spoiler-media-youre-.jpeg" />
