@@ -4,34 +4,41 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <div id="welcome" class="window">
-            <p id="welcomeclose" class="closebutton">Close</p>
+        <div id="welcome" class="window" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
+            <p style="cursor: pointer" id="welcomeclose" class="closebutton">Close</p>
         
-            <div>
-                <p class="headertext">DiparguOS</p>
-            </div>
+            <p>
+                <p style="color:black;" class="headertext"> DiparguOS</p>
+            </p>
             
-            <p id="timeElement" class="headertext"></p>
-            <script>
-                setInterval(() => {
-                    document.getElementById("timeElement").textContent = new Date().toLocaleString();
-                }, 1000);
-            </script>
+            <p style="color:black;" id="timeElement" class="headertext"></p>
+                <script>
+                    setInterval(() => {
+                        document.getElementById("timeElement").textContent = new Date().toLocaleString();
+                    }, 1000);
+                </script>
         </div>
-    
-        <div class="main-content">
+
+        <div id="desktopApps" style="padding-top: 20px; padding-left: 16px;">
+            <div id="myAppIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: fit-content; cursor: pointer;">
+                <img src="imgi_11_images.jpg" style="width: 48px; height: 48px; border-radius: 8px;" />
+                <p style="margin: 0px; color: black; font-size: 12px;">Mis Notas</p>
+            </div>
+        </div>
+
+        <div style="border: solid;width: 300px;border-radius: 10px;padding: 10px;justify-content: space-between">
             <h1>Welcome to My OS</h1>
-            <p id="welcomeopen" class="reopen-btn">DiparguOS</p>
+                <p id="welcomeopen" style="cursor: pointer;">DiparguOS</p>
             <h2>Introduction</h2>
             <p>Hello World!</p>
             <img style="width: 172px; height: 256px;" src="imgi_1_spoiler-media-youre-.jpeg" />
-            <p></p>
+                <p></p>
             <a href="https://www.instagram.com/starthackclub/">Instagram StartHackClub</a>
             <p>Mi playlist de Spotify</p>
             <a href="https://open.spotify.com/playlist/7HHFBwniat986atA4proWS?si=27826c9d4b3b460c">Spotify Playlist</a>
             <h3>About Me</h3>
             <p>Fav Color</p>
-            <p style="color: red;">Red</p>
+                    <p style="color: red;">Red</p>
             <h4>Hobbies</h4>
             <ul>
                 <li>Video Games</li>
@@ -42,6 +49,18 @@
                 <li>Gym</li>
                 <li>Programming</li>
             </ul>
+        </div>
+
+        <div class="window" id="notes" style="position: absolute; top: 100px; left: 100px; display: none; background-color: rgba(0,0,0,0.8); border: solid 1px; padding: 10px; width: 300px;">
+            <div class="windowheader" id="notesheader" style="display: flex; justify-content: space-between; cursor: grab;">
+                <p id="notesclose" style="cursor: pointer; color: red;">X</p>
+                <p class="headertext" style="color: white;">Mis Notas</p>
+                <div></div>
+            </div>
+            <div style="background-color: #fff; color: #000; padding: 10px; display: flex;">
+                <div id="sidebar" style="width: 80px; border-right: 1px solid #ccc; margin-right: 10px;"></div>
+                <div id="noteContent"></div>
+            </div>
         </div>
 
         <script src="script.js"></script>
