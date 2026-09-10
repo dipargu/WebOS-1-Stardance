@@ -4,6 +4,43 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body style="background-image: url('Imagenes/045fd0b77c99acc854d0f8369ea17afa.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        <!-- Pantalla de carga simulada de DiparguOS -->
+        <div id="bootScreen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0f111a; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; font-family: sans-serif; transition: opacity 0.5s ease;">
+            <h1 style="margin-bottom: 20px; font-size: 32px; letter-spacing: 2px; color: #50fa7b;">DiparguOS</h1>
+            <p id="bootStatus" style="margin-bottom: 20px; color: #8be9fd; font-size: 14px;">Iniciando sistema...</p>
+            <div style="width: 250px; height: 6px; background: #333; border-radius: 3px; overflow: hidden;">
+                <div id="bootBar" style="width: 0%; height: 100%; background: #50fa7b; transition: width 0.1s linear;"></div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                let progress = 0;
+                const bar = document.getElementById("bootBar");
+                const status = document.getElementById("bootStatus");
+                const bootScreen = document.getElementById("bootScreen");
+
+                const interval = setInterval(function() {
+                    progress += 2; 
+                    if (bar) bar.style.width = progress + "%";
+
+                    if (progress === 40) {
+                        status.textContent = "Cargando aplicaciones...";
+                    } else if (progress === 80) {
+                        status.textContent = "Iniciando entorno modular...";
+                    }
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        bootScreen.style.opacity = "0";
+                        setTimeout(function() {
+                            bootScreen.style.display = "none";
+                        }, 500);
+                    }
+                }, 100);
+            });
+        </script>
+
         <div id="welcome" class="window" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
             <p style="cursor: pointer" id="welcomeclose" class="closebutton">Close</p>
         
