@@ -1,0 +1,31 @@
+.closebutton {
+  cursor: pointer;
+  margin: 0;
+}
+
+.window {
+  position: sticky;
+  width: 100%;
+  display: flex;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 0, 0, 0.25);
+  color: #fff;
+  justify-content: space-between;
+}
+
+.headertext {
+  color: black;
+  margin: 0;
+}
+
+.main-content {
+  border: solid;
+  width: 300px;
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.reopen-btn {
+  cursor: pointer;
+}

@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
     <body>
-        <div id="welcome" styles="(styles)" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between;">
-            <p style="cursor: pointer" id="welcomeclose">Close</p>
+        <div id="welcome" class="window">
+            <p id="welcomeclose" class="closebutton">Close</p>
         
-            <p>
-                <p style="color:black;"> DiparguOS</p>
-            </p>
+            <div>
+                <p class="headertext">DiparguOS</p>
+            </div>
             
-            <p style="color:black;" id="timeElement"></p>
-                <script>
-                    setInterval(() => {
-                        document.getElementById("timeElement").textContent = new Date().toLocaleString();
-                    }, 1000);
-                </script>
-        
+            <p id="timeElement" class="headertext"></p>
+            <script>
+                setInterval(() => {
+                    document.getElementById("timeElement").textContent = new Date().toLocaleString();
+                }, 1000);
+            </script>
         </div>
     
-        <div style="border: solid;width: 300px;border-radius: 10px;padding: 10px;justify-content: space-between">
+        <div class="main-content">
             <h1>Welcome to My OS</h1>
-                <p id="welcomeopen" style="cursor: pointer;">DiparguOS</p>
+            <p id="welcomeopen" class="reopen-btn">DiparguOS</p>
             <h2>Introduction</h2>
             <p>Hello World!</p>
             <img style="width: 172px; height: 256px;" src="imgi_1_spoiler-media-youre-.jpeg" />
-                <p></p>
+            <p></p>
             <a href="https://www.instagram.com/starthackclub/">Instagram StartHackClub</a>
             <p>Mi playlist de Spotify</p>
             <a href="https://open.spotify.com/playlist/7HHFBwniat986atA4proWS?si=27826c9d4b3b460c">Spotify Playlist</a>
             <h3>About Me</h3>
             <p>Fav Color</p>
-                    <p style="color: red;">Red</p>
+            <p style="color: red;">Red</p>
             <h4>Hobbies</h4>
             <ul>
                 <li>Video Games</li>
@@ -44,5 +46,4 @@
 
         <script src="script.js"></script>
     </body>
-
 </html>
