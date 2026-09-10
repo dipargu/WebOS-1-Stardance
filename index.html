@@ -41,19 +41,6 @@
             });
         </script>
 
-        <div id="welcome" class="window" style="position: sticky; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between; align-items: center; padding: 0 10px; box-sizing: border-box;">
-            <div></div>
-        
-            <p style="color:black;" class="headertext">DiparguOS</p>
-            
-            <p style="color:black;" id="timeElement" class="headertext"></p>
-                <script>
-                    setInterval(() => {
-                        document.getElementById("timeElement").textContent = new Date().toLocaleString();
-                    }, 1000);
-                </script>
-        </div>
-
         <div id="desktopApps">
             <div id="myAppIcon" onclick="handleIconTap(this)" style="text-align: center; padding: 10px; width: 70px; cursor: pointer;">
                 <img src="Imagenes/imgi_11_images.jpg" style="width: 48px; height: 48px; border-radius: 8px;" />
@@ -106,18 +93,19 @@
             </ul>
         </div>
 
-        <div class="window" id="notes" style="position: absolute; top: 100px; left: 100px; display: none; background-color: rgba(0,0,0,0.8); border: solid 1px; padding: 10px; width: 300px;">
-            <div class="windowheader" id="notesheader" style="display: flex; justify-content: space-between; cursor: grab;">
-                <p id="notesclose" style="cursor: pointer; color: red;">X</p>
-                <p class="headertext" style="color: white;">Mis Notas</p>
+        <!-- Ventana de Notas editable -->
+        <div class="window" id="notes" style="position: absolute; top: 100px; left: 100px; display: none; background-color: rgba(20, 20, 30, 0.95); border: 1px solid #444; border-radius: 8px; width: 300px; color: #fff;">
+            <div class="windowheader" id="notesheader" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.1); cursor: grab;">
+                <p id="notesClose" style="cursor: pointer; color: #ff5f56; margin: 0; font-weight: bold;">X</p>
+                <p class="headertext" style="margin: 0; color: #fff;">Mis Notas</p>
                 <div></div>
             </div>
-            <div style="background-color: #fff; color: #000; padding: 10px; display: flex;">
-                <div id="sidebar" style="width: 80px; border-right: 1px solid #ccc; margin-right: 10px;"></div>
-                <div id="noteContent"></div>
+            <div style="padding: 12px;">
+                <textarea id="noteContent" placeholder="Escribe lo que quieras aquí..." style="width: 100%; height: 180px; background: #111; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px; box-sizing: border-box; resize: none; font-family: sans-serif;"></textarea>
             </div>
         </div>
 
+        <!-- Ventana de Fav Animes con lista interactiva y botón de añadir -->
         <div class="window" id="animeWindow" style="position: absolute; top: 120px; left: 120px; display: none; background-color: rgba(20, 20, 30, 0.95); border: 1px solid #444; border-radius: 8px; width: 420px; color: #fff;">
             <div class="windowheader" id="animeWindowheader" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background-color: rgba(255, 255, 255, 0.1); cursor: grab;">
                 <p id="animeClose" style="cursor: pointer; color: #ff5f56; margin: 0; font-weight: bold;">X</p>
@@ -125,7 +113,13 @@
                 <div></div>
             </div>
             <div style="padding: 12px;">
-                <div id="animeContainer" style="display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto;">
+                <!-- Contenedor donde se cargan los animes -->
+                <div id="animeContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto; margin-bottom: 10px;">
+                </div>
+                <!-- Input y botón para añadir nuevos animes -->
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" id="newAnimeInput" placeholder="Añadir nuevo anime..." style="flex: 1; padding: 6px; background: #111; color: #fff; border: 1px solid #444; border-radius: 4px;" />
+                    <button onclick="addAnime()" style="padding: 6px 12px; background: #50fa7b; color: #000; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">Añadir</button>
                 </div>
             </div>
         </div>
@@ -178,8 +172,71 @@
             </div>
         </div>
 
+        <div id="welcome" class="window" style="position: fixed; bottom: 0; left: 0; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 0, 0, 0.25); color: #fff; justify-content: space-between; align-items: center; padding: 0 10px; box-sizing: border-box; z-index: 9998;">
+            <div></div>
+        
+            <p style="color:black;" class="headertext">DiparguOS</p>
+            
+            <p style="color:black;" id="timeElement" class="headertext"></p>
+                <script>
+                    setInterval(() => {
+                        document.getElementById("timeElement").textContent = new Date().toLocaleString();
+                    }, 1000);
+                </script>
+        </div>
+
         <script src="script.js"></script>
         <script src="calculadora.js"></script>
         <script src="crono.js"></script>
+        <script>
+            // Lógica de Notas con LocalStorage
+            const noteArea = document.getElementById("noteContent");
+            if (localStorage.getItem("dipargu_note")) {
+                noteArea.value = localStorage.getItem("dipargu_note");
+            }
+            noteArea.addEventListener("input", function() {
+                localStorage.setItem("dipargu_note", noteArea.value);
+            });
+
+            // Lógica de Lista de Animes con LocalStorage y botón de añadir
+            let animeList = JSON.parse(localStorage.getItem("dipargu_animes")) || [
+                "Solo Leveling",
+                "Attack on Titan",
+                "Chainsaw Man"
+            ];
+
+            function renderAnimes() {
+                const container = document.getElementById("animeContainer");
+                container.innerHTML = "";
+                animeList.forEach((anime, index) => {
+                    const item = document.createElement("div");
+                    item.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: #1a1a24; padding: 6px 10px; border-radius: 4px; border: 1px solid #333;";
+                    item.innerHTML = `
+                        <span>${anime}</span>
+                        <button onclick="removeAnime(${index})" style="background: #ff5555; color: #fff; border: none; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-size: 10px;">X</button>
+                    `;
+                    container.appendChild(item);
+                });
+                localStorage.setItem("dipargu_animes", JSON.stringify(animeList));
+            }
+
+            function addAnime() {
+                const input = document.getElementById("newAnimeInput");
+                const val = input.value.trim();
+                if (val) {
+                    animeList.push(val);
+                    input.value = "";
+                    renderAnimes();
+                }
+            }
+
+            function removeAnime(index) {
+                animeList.splice(index, 1);
+                renderAnimes();
+            }
+
+            // Inicializar lista de animes al cargar
+            renderAnimes();
+        </script>
     </body>
 </html>

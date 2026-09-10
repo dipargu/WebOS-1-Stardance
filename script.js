@@ -1,102 +1,88 @@
-function handleIconTap(element) {
-  if (element.classList.contains("selected")) {
-    deselectIcon(element);
-    
-    if (element.id === "myAppIcon") {
-      var notesWin = document.querySelector("#notes");
-      if (notesWin.style.display === "flex") { closeWindow(notesWin); } else { openWindow(notesWin); }
-    } else if (element.id === "animeIcon") {
-      var animeWin = document.querySelector("#animeWindow");
-      if (animeWin.style.display === "flex") { closeWindow(animeWin); } else { openWindow(animeWin); }
-    } else if (element.id === "calcIcon") {
-      var calcWin = document.querySelector("#calcWindow");
-      if (calcWin.style.display === "flex") { closeWindow(calcWin); } else { openWindow(calcWin); }
-    } else if (element.id === "cronoIcon") {
-      var cronoWin = document.querySelector("#cronoWindow");
-      if (cronoWin.style.display === "flex") { closeWindow(cronoWin); } else { openWindow(cronoWin); }
+// Gestión de apertura y cierre de ventanas y lógica de arrastre (Drag & Drop)
+
+function handleIconTap(icon) {
+    const id = icon.id;
+    let targetWindowId = "";
+
+    if (id === "myAppIcon") targetWindowId = "notes";
+    if (id === "animeIcon") targetWindowId = "animeWindow";
+    if (id === "calcIcon") targetWindowId = "calcWindow";
+    if (id === "cronoIcon") targetWindowId = "cronoWindow";
+
+    if (targetWindowId) {
+        const win = document.getElementById(targetWindowId);
+        if (win) {
+            win.style.display = win.style.display === "none" ? "block" : "none";
+        }
     }
-  } else {
-    if (selectedIcon) deselectIcon(selectedIcon);
-    selectIcon(element);
-    
-    if (element.id === "myAppIcon") {
-      openWindow(document.querySelector("#notes"));
-    } else if (element.id === "animeIcon") {
-      openWindow(document.querySelector("#animeWindow"));
-    } else if (element.id === "calcIcon") {
-      openWindow(document.querySelector("#calcWindow"));
-    } else if (element.id === "cronoIcon") {
-      openWindow(document.querySelector("#cronoWindow"));
+}
+
+// Botones de cierre (X)
+document.addEventListener("click", function(e) {
+    if (e.target && e.target.id) {
+        if (e.target.id === "notesClose") document.getElementById("notes").style.display = "none";
+        if (e.target.id === "animeClose") document.getElementById("animeWindow").style.display = "none";
+        if (e.target.id === "calcClose") document.getElementById("calcWindow").style.display = "none";
+        if (e.target.id === "cronoClose") document.getElementById("cronoWindow").style.display = "none";
     }
-  }
-}
+});
 
-function selectIcon(element) {
-  element.classList.add("selected");
-  selectedIcon = element;
-}
-
-function deselectIcon(element) {
-  if (element) {
-    element.classList.remove("selected");
-    selectedIcon = undefined;
-  }
-}
-
-function openWindow(element) {
-  element.style.display = "flex";
-  biggestIndex++;
-  element.style.zIndex = biggestIndex;
-}
-
-function closeWindow(element) {
-  element.style.display = "none";
-}
-
-function initializeWindow(windowId, closeBtnId) {
-  var win = document.querySelector(windowId);
-  var closeBtn = document.querySelector(closeBtnId);
-
-  if (closeBtn && win) {
-    closeBtn.addEventListener("click", function() {
-      closeWindow(win);
-    });
-  }
-
-  if (win) {
-    win.addEventListener("mousedown", function() {
-      biggestIndex++;
-      win.style.zIndex = biggestIndex;
-    });
-  }
-}
-
-var selectedIcon = undefined;
-var biggestIndex = 1;
-
-initializeWindow("#welcome", "#welcomeclose");
-initializeWindow("#notes", "#notesclose");
-initializeWindow("#animeWindow", "#animeClose");
-initializeWindow("#calcWindow", "#calcClose");
-initializeWindow("#cronoWindow", "#cronoClose");
-
-var welcomeScreenOpen = document.querySelector("#welcomeopen");
-if (welcomeScreenOpen) {
-  welcomeScreenOpen.addEventListener("click", function() {
-    openWindow(document.querySelector("#welcome"));
-  });
-}
+// Ocultar/Mostrar barra inferior
 function toggleMainHeader() {
-  var header = document.querySelector("#welcome");
-  var textLabel = document.querySelector("#toggleHeaderText");
-  
-  if (header && textLabel) {
-    if (header.style.display === "none") {
-      header.style.display = "flex";
-      textLabel.textContent = "Close";
+    const welcome = document.getElementById("welcome");
+    const text = document.getElementById("toggleHeaderText");
+    if (welcome.style.display === "none") {
+        welcome.style.display = "flex";
+        if (text) text.textContent = "Close";
     } else {
-      header.style.display = "none";
-      textLabel.textContent = "Open";
+        welcome.style.display = "none";
+        if (text) text.textContent = "Open";
     }
-  }
 }
+
+// Sistema de arrastre robusto para las ventanas (solo desde el header)
+document.addEventListener("DOMContentLoaded", () => {
+    const windows = document.querySelectorAll(".window");
+
+    windows.forEach(win => {
+        const header = win.querySelector(".windowheader");
+        if (!header) return;
+
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+
+        header.addEventListener("mousedown", (e) => {
+            // Evitar arrastre si se hace clic en la "X" de cerrar
+            if (e.target.id && e.target.id.includes("Close")) return;
+
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+
+            // Obtener posición actual de la ventana
+            const rect = win.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+
+            // Poner la ventana seleccionada al frente
+            win.style.zIndex = 9999;
+
+            e.preventDefault();
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+            win.style.left = `${initialX + dx}px`;
+            win.style.top = `${initialY + dy}px`;
+            win.style.position = "absolute";
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
+    });
+});
