@@ -1,6 +1,6 @@
 <h1>diparguOS</h1>
 <p>This is diparguOS, the new operating system.</p>
-"<img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/79eaba8b-4a47-453c-9c2a-ba734aebd5aa" />
+<img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/79eaba8b-4a47-453c-9c2a-ba734aebd5aa" />
 
 
 <h2>This new OS can</h2>
