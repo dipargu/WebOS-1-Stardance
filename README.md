@@ -82,6 +82,11 @@ WebOS-1-Stardance/
 <hr>
 
 <h2>Version 1.0</h2>
-## Project files
 
-[Open index.html](https://raw.githubusercontent.com/dipargu/diparguOS/main/index.html)
+
+
+<h2>Project files</h2>
+
+<p> <a href="https://raw.githubusercontent.com/dipargu/diparguOS/refs/heads/main/README.md"> Open RAW README.md </a> </p>
+
+<p> <a href="https://raw.githubusercontent.com/dipargu/diparguOS/main/index.html"> Open index.html </a> </p>
